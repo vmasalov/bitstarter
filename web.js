@@ -3,14 +3,14 @@ var fs = require('fs');
 var app = express.createServer(express.logger());
 var buf = null;
 
-fs.readFile('/index.html', function (err, data) {
+fs.readFile('index.html', function (err, data) {
   if (err) throw err;
-  //buf = new Buffer(data);
+  buf = new Buffer(data);
 });
 
 app.get('/', function(request, response) {
-	//var txt = buf === null ? "Index is not read" : buf.toString('utf-8');
-    response.send("test1");
+	var txt = buf === null ? "Index is not read" : buf.toString('utf-8');
+    response.send(txt);
 });
 
 var port = process.env.PORT || 5000;
